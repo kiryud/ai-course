@@ -28,3 +28,4 @@ def search(question, k=3):
 for question in ["지원 시기는 어떻게 되는거지?", "과정은 어떻게 알 수 있지?", "개발자도 할 수 있나?", "합격하면 뭘 할 수 있을까?"]:
     print("Q:", question)
     search(question)
+

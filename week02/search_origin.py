@@ -28,3 +28,4 @@ for question in ["시험 언제야?", "책 빌리는 곳 몇 시에 닫아?", "�
                  "졸업하려면 뭐가 필요해?", "장학금 신청 기간이 지났으면 어떻게 해?"]:
     print("Q:", question)
     search(question)
+

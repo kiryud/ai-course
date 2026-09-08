@@ -19,3 +19,4 @@ others = [
 b = emb(base)
 for t in others:
     print(f"{cos(b, emb(t)):.3f}  {t}")
+

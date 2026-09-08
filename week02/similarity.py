@@ -23,3 +23,4 @@ pairs = [
 
 for a, b in pairs:
     print(f"{cos(emb(a), emb(b)):.3f}  |  {a}  |  {b}")
+

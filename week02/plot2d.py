@@ -32,3 +32,4 @@ ax.set_title("단어 20개의 임베딩을 2차원으로 투영")
 ax.set_xticks([]); ax.set_yticks([])
 plt.savefig("words2d.png", dpi=150)
 plt.show()
+

@@ -20,3 +20,4 @@ candidates = ["여왕", "왕비", "왕자", "공주", "임금", "남자", "여�
 print('"왕 - 남자 + 여자" 결과 벡터와 가까운 순서:')
 for w in sorted(candidates, key=lambda w: -cos(target, emb(w))):
     print(f"  {w}  {cos(target, emb(w)):.3f}")
+
