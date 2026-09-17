@@ -15,3 +15,5 @@
 - [readme](./week02/README.md)
 
 ## 3주차
+
+- [readme](./week03/README.md)
