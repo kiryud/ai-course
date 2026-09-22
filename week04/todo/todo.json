@@ -1,0 +1,10 @@
+[
+    {
+        "task": "지원하기",
+        "completed": true
+    },
+    {
+        "task": "이력서 수정",
+        "completed": false
+    }
+]
