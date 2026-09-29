@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토스페이먼츠 주문서형 결제 테스트</title>
+    <script src="https://js.tosspayments.com/v2/standard"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        #payment-method, #agreement { border: 1px solid #eee; padding: 10px; margin-bottom: 20px; border-radius: 8px; }
+        button { padding: 10px 20px; background-color: #0064ff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:disabled { background-color: #ccc; }
+    </style>
+</head>
+<body>
+    <h1>주문서형 결제 테스트</h1>
+    
+    <div id="payment-method">
+        <!-- 결제 수단 UI가 여기에 렌더링됩니다 -->
+    </div>
+
+    <div id="agreement">
+        <!-- 약관 UI가 여기에 렌더링됩니다 -->
+    </div>
+
+    <button id="pay-button" disabled>결제하기</button>
+
+    <script>
+        const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm';
+        const customerKey = TossPayments.ANONYMOUS;
+
+        async function initPayment() {
+            try {
+                const tossPayments = TossPayments(clientKey);
+                const widgets = tossPayments.widgets({ customerKey });
+
+                // 1. 금액 설정
+                await widgets.setAmount({
+                    currency: 'KRW',
+                    value: 1000
+                });
+
+                // 2. 결제 수단 UI 렌더링
+                await widgets.renderPaymentMethods({
+                    selector: '#payment-method',
+                    variantKey: 'DEFAULT'
+                });
+
+                // 3. 약관 UI 렌더링
+                const agreementWidget = await widgets.renderAgreement({
+                    selector: '#agreement',
+                    variantKey: 'AGREEMENT'
+                });
+
+                // 약관 동의 상태에 따라 결제 버튼 활성화/비활성화
+                agreementWidget.on('agreementStatusChange', (agreementStatus) => {
+                    const payButton = document.getElementById('pay-button');
+                    payButton.disabled = !agreementStatus.agreedRequiredTerms;
+                });
+
+                // 4. 결제 요청 처리
+                document.getElementById('pay-button').addEventListener('click', async () => {
+                    const orderId = Math.random().toString(36).substring(2, 11); // 무작위 문자열
+                    const orderName = '테스트 상품';
+                    const successUrl = window.location.origin + '/success.html';
+                    const failUrl = window.location.origin + '/fail.html';
+
+                    await widgets.requestPayment({
+                        orderId,
+                        orderName,
+                        successUrl,
+                        failUrl
+                    });
+                });
+
+            } catch (error) {
+                console.error('결제 초기화 중 오류 발생:', error);
+                alert('결제 초기화에 실패했습니다. 콘솔을 확인하세요.');
+            }
+        }
+
+        initPayment();
+    </script>
+</body>
+</html>

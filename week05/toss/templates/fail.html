@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 실패</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        h1 { color: #ff4d4f; }
+    </style>
+</head>
+<body>
+    <h1>❌ 결제 실패</h1>
+    <p>결제 과정에서 오류가 발생했습니다. 전달받은 에러 정보입니다:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>항목</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if code %}
+            <tr><td>code</td><td>{{ code }}</td></tr>
+            <tr><td>message</td><td>{{ message }}</td></tr>
+            {% else %}
+            <tr><td colspan="2">에러 데이터가 없습니다.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 성공</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        h1 { color: #0064ff; }
+    </style>
+</head>
+<body>
+    <h1>✅ 결제 성공</h1>
+    <p>토스페이먼츠로부터 전달받은 데이터입니다:</p>
+    <table id="result-table">
+        <thead>
+            <tr>
+                <th>항목</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function displayParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tbody = document.querySelector('#result-table tbody');
+            
+            urlParams.forEach((value, key) => {
+                const row = tbody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = key;
+                cell2.textContent = value;
+            });
+
+            if (urlParams.size === 0) {
+                tbody.insertRow().insertCell(0).textContent = "데이터가 없습니다.";
+                tbody.rows[0].insertCell(1).textContent = "-";
+            }
+        }
+        displayParams();
+    </script>
+</body>
+</html>

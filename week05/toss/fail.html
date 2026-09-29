@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 실패</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        h1 { color: #ff4d4f; }
+    </style>
+</head>
+<body>
+    <h1>❌ 결제 실패</h1>
+    <p>결제 과정에서 오류가 발생했습니다. 전달받은 에러 정보입니다:</p>
+    <table id="result-table">
+        <thead>
+            <tr>
+                <th>항목</th>
+                <th>값</th>
+            </tr>
+        </thead>
+        <tbody id="error-tbody"></tbody>
+    </table>
+
+    <script>
+        function displayParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tbody = document.getElementById('error-tbody');
+            
+            urlParams.forEach((value, key) => {
+                const row = tbody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = key;
+                cell2.textContent = value;
+            });
+
+            if (urlParams.size === 0) {
+                tbody.insertRow().insertCell(0).textContent = "에러 데이터가 없습니다.";
+                tbody.rows[0].insertCell(1).textContent = "-";
+            }
+        }
+        displayParams();
+    </script>
+</body>
+</html>
