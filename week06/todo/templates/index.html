@@ -8,26 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>할 일 관리</h1>
+        <h1>나의 할 일</h1>
         
-        <form action="/add" method="POST">
+        <form action="/add" method="POST" class="add-form">
             <input type="text" name="title" placeholder="새로운 할 일을 입력하세요" required>
             <button type="submit">추가</button>
         </form>
 
         <ul class="todo-list">
             {% for todo in todos %}
-            <li>
-                {% if todo.is_completed %}
-                    <s>{{ todo.title }}</s>
-                {% else %}
-                    {{ todo.title }}
-                {% endif %}
+            <li class="todo-item {{ 'completed' if todo.is_completed else '' }}">
+                <div class="todo-content">
+                    <form action="/toggle/{{ todo.id }}" method="POST" style="display: inline;">
+                        <input type="checkbox" {% if todo.is_completed %}checked{% endif %} onchange="this.form.submit()">
+                    </form>
+                    <span>{{ todo.title }}</span>
+                </div>
                 
-                <form action="/toggle/{{ todo.id }}" method="POST" style="display: inline;">
-                    <button type="submit">
-                        {% if todo.is_completed %}완료 해제{% else %}완료{% endif %}
-                    </button>
+                <form action="/delete/{{ todo.id }}" method="POST" style="display: inline;">
+                    <button type="submit" class="delete-btn">삭제</button>
                 </form>
             </li>
             {% endfor %}
