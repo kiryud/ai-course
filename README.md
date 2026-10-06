@@ -25,3 +25,8 @@
 ## 5주차
 
 - [readme](./week05/README.md)
+
+## 6주차
+
+- [readme](./week06/README.md)
+
