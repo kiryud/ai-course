@@ -100,7 +100,16 @@ def format_phone_series(series):
 
 ### 4절 : 직접해보기 6
 
-소스코드 : [vague.py](./vague.py)
+소스코드 : 
+실행 결과
+
+```shell
+
+```
+
+### 4절 : 직접해보기 7
+
+소스코드 : 
 
 실행 결과
 
@@ -108,19 +117,9 @@ def format_phone_series(series):
 
 ```
 
-### 1절 : 직접해보기 1
+### 5절 : 직접해보기 8
 
-소스코드 : [vague.py](./vague.py)
-
-실행 결과
-
-```shell
-
-```
-
-### 1절 : 직접해보기 1
-
-소스코드 : [vague.py](./vague.py)
+소스코드 :
 
 실행 결과
 
@@ -128,19 +127,9 @@ def format_phone_series(series):
 
 ```
 
-### 1절 : 직접해보기 1
+### 5절 : 직접해보기 9
 
-소스코드 : [vague.py](./vague.py)
-
-실행 결과
-
-```shell
-
-```
-
-### 1절 : 직접해보기 1
-
-소스코드 : [vague.py](./vague.py)
+소스코드 :
 
 실행 결과
 
@@ -148,19 +137,9 @@ def format_phone_series(series):
 
 ```
 
-### 1절 : 직접해보기 1
+### 5절 : 직접해보기 10
 
-소스코드 : [vague.py](./vague.py)
-
-실행 결과
-
-```shell
-
-```
-
-### 1절 : 직접해보기 1
-
-소스코드 : [vague.py](./vague.py)
+소스코드 :
 
 실행 결과
 
@@ -168,19 +147,9 @@ def format_phone_series(series):
 
 ```
 
-### 1절 : 직접해보기 1
+### 6절 : 직접해보기 11
 
-소스코드 : [vague.py](./vague.py)
-
-실행 결과
-
-```shell
-
-```
-
-### 1절 : 직접해보기 1
-
-소스코드 : [vague.py](./vague.py)
+소스코드 :
 
 실행 결과
 
@@ -188,9 +157,39 @@ def format_phone_series(series):
 
 ```
 
-### 1절 : 직접해보기 1
+### 6절 : 직접해보기 12
 
-소스코드 : [vague.py](./vague.py)
+소스코드 :
+
+실행 결과
+
+```shell
+
+```
+
+### 7절 : 직접해보기 13
+
+소스코드 :
+
+실행 결과
+
+```shell
+
+```
+
+### 9절 : 직접해보기 14
+
+소스코드 :
+
+실행 결과
+
+```shell
+
+```
+
+### 9절 : 직접해보기 15
+
+소스코드 :
 
 실행 결과
 
