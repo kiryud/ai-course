@@ -39,6 +39,17 @@ def add():
         conn.close()
     return redirect(url_for('index'))
 
+@app.route('/toggle/<int:todo_id>', methods=['POST'])
+def toggle(todo_id):
+    conn = get_db_connection()
+    todo = conn.execute('SELECT is_completed FROM todos WHERE id = ?', (todo_id,)).fetchone()
+    if todo:
+        new_status = 1 if todo['is_completed'] == 0 else 0
+        conn.execute('UPDATE todos SET is_completed = ? WHERE id = ?', (new_status, todo_id))
+        conn.commit()
+    conn.close()
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)

@@ -18,8 +18,17 @@
         <ul class="todo-list">
             {% for todo in todos %}
             <li>
-                <span>{{ todo.title }}</span>
-                <!-- 완료/삭제 버튼은 2단계에서 구현 -->
+                {% if todo.is_completed %}
+                    <s>{{ todo.title }}</s>
+                {% else %}
+                    {{ todo.title }}
+                {% endif %}
+                
+                <form action="/toggle/{{ todo.id }}" method="POST" style="display: inline;">
+                    <button type="submit">
+                        {% if todo.is_completed %}완료 해제{% else %}완료{% endif %}
+                    </button>
+                </form>
             </li>
             {% endfor %}
         </ul>
