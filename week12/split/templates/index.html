@@ -12,8 +12,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             color: #333;
+            padding: 20px 0;
         }
         .container {
             background-color: white;
@@ -29,6 +30,13 @@
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             color: #2c3e50;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 1.5rem 0 0.5rem 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
         }
         .input-group {
             margin-bottom: 1rem;
@@ -46,7 +54,7 @@
             border-radius: 8px;
             font-size: 1rem;
             box-sizing: border-box;
-            -webkit-appearance: none; /* iOS styling fix */
+            -webkit-appearance: none;
         }
         button {
             width: 100%;
@@ -59,10 +67,9 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 1rem;
-            transition: background-color 0.2s;
         }
-        button:active {
-            background-color: #2980b9;
+        .upload-btn {
+            background-color: #2ecc71;
         }
         .result-area {
             margin-top: 1.5rem;
@@ -78,25 +85,72 @@
         }
         .error-text {
             color: #e74c3c;
+        }
+        .item-list {
+            margin-top: 1rem;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
             font-size: 0.9rem;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ddd;
+            padding: 5px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>💰 나눠 내기 계산기</h1>
+        
+        <!-- 직접 입력 섹션 -->
+        <div class="section-title">직접 입력</div>
         <form method="POST">
             <div class="input-group">
-                <label for="total_amount">총 금액 (원)</label>
-                <input type="number" id="total_amount" name="total_amount" placeholder="예: 50000" required inputmode="numeric">
+                <label>총 금액 (원)</label>
+                <input type="number" name="total_amount" placeholder="예: 50000" inputmode="numeric">
             </div>
             <div class="input-group">
-                <label for="people_count">인원 수 (명)</label>
-                <input type="number" id="people_count" name="people_count" placeholder="예: 4" required inputmode="numeric">
+                <label>인원 수 (명)</label>
+                <input type="number" name="people_count" placeholder="예: 4" inputmode="numeric">
             </div>
             <button type="submit">계산하기</button>
         </form>
 
+        <!-- 영수증 업로드 섹션 -->
+        <div class="section-title">영수증 촬영/업로드</div>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label>영수증 사진</label>
+                <input type="file" name="receipt_image" accept="image/*">
+            </div>
+            <div class="input-group">
+                <label>인원 수 (명)</label>
+                <input type="number" name="people_count" placeholder="예: 4" inputmode="numeric" required>
+            </div>
+            <button type="submit" class="upload-btn">영수증으로 계산하기</button>
+        </form>
+
+        <!-- AI가 읽은 항목 리스트 표시 -->
+        {% if items %}
+            <div class="section-title">인식된 항목</div>
+            <div class="item-list">
+                {% for item in items %}
+                <div class="item-row">
+                    <span>{{ item.item }}</span>
+                    <span>{{ "{:,.0f}".format(item.price) }}원</span>
+                </div>
+                {% endfor %}
+                <div class="item-row" style="font-weight: bold; margin-top: 5px;">
+                    <span>합계</span>
+                    <span>{{ "{:,.0f}".format(total_amount) }}원</span>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- 최종 결과 표시 -->
         {% if result is not none %}
             <div class="result-area">
                 {% if result is number %}
